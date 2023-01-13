@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		#body{
+			font-size: 12px; line-height: 16px; color: #202020;
+			font-family: -apple-system,BlinkMacSystemFont,"Malgun Gothic","맑은 고딕",helvetica,"Apple SD Gothic Neo",sans-serif;;
+		}
+
+		.shop-wrap{
+			overflow: hidden; width: 350px; height: 1809px; background-color: #fff;
+			letter-spacing: -.25px; transform: translateZ(0);
+		}
+
+		.shop-wrap .shop-header{
+			padding: 12px 0 13px; line-height: 17px;
+		}
+
+		.shop-wrap .link-shop{
+			float: left; margin: 2px 0 0 1px; font-size: 13px; line-height: 17px; color: #000;
+		}
+
+		.shop-wrap .link-shop .ls-link::before{
+			display: inline-block; width: 15px; height: 15px; 
+			background-position: -109px -22px; background-repeat: repeat; content: '';
+			margin-right: 4px; vertical-align: -3px;
+		}
+
+		.shop-wrap .link-shop .ls-link{
+			color: inherit; text-decoration: none;
+		}
+
+		.shop-wrap .link-shop .ls-link::after{
+			display: inline-block; width: 5px; height: 9px; 
+			background-position: -109px -49px; background-repeat: repeat; content: '';
+			margin-right: 7px; vertical-align: 0;
+		}
+
+		.shop-wrap .link-shop .ls-link::before,
+		.shop-wrap .link-shop .ls-link::after{
+			background-image: url(img/img2.png);
+			background-size: 129px 101px;
+		}
+
+	</style>
+</head>
+<body marginwidth="0" marginheight="0">
+	<div class="shop-wrap">
+		<!-- shop 헤드 -->
+		<div class="shop-header">
+			<h1 class="link-shop">
+				<a href="#" class="ls-link">
+					트렌드쇼핑
+				</a>
+			</h1>
+		</div>
+	</div>
+</body>
+</html>

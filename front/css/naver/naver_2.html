@@ -628,6 +628,82 @@
 		.box-body-left3 .item-menu .book[aria-selected=true]{ background-color: #42be6f;}
 		.box-body-left3 .item-menu .beauty[aria-selected=true]{ background-color: #8449ca;}
 
+		/* 오른쪽 4번째 컨텐츠 */
+		.box-body-right4{
+			margin-top: 15px;
+		}
+
+		.box-body-right4 .box-title{
+			padding: 12px 0 13px; line-height: 17px;
+		}
+
+		.box-body-right4 .link-trand-shopping{
+			float: left; font-size: 13px; letter-spacing: -.25px; color: #000;
+			font-weight: bold; margin: 2px 0 0 1px; 
+		}
+
+		.box-body-right4 .link-trand-shopping::before{
+			display: inline-block; width: 15px; height: 15px; 
+			background-position: -109px -22px; background-repeat: repeat; content: '';
+			margin-right: 4px; vertical-align: -3px;
+		}
+
+		.box-body-right4 .link-trand-shopping::after{
+			display: inline-block; width: 5px; height: 9px; 
+			background-position: -109px -49px; background-repeat: repeat; content: '';
+			margin-left: 7px; vertical-align: 0;
+		}
+
+		.box-body-right4 .link-trand-shopping:hover{
+			text-decoration: underline;
+		}
+
+		.box-body-right4 .box-title .box-btn{
+			float: right;
+		}
+
+		.box-body-right4 .box-title .box-btn>a{
+			float: left; font-size: 13px; color: #202020; font-weight: bold;
+			padding: 0 1px; border-bottom: 2px solid transparent; letter-spacing: -.25px;
+		}
+
+		.box-body-right4 .box-title .box-btn>a~a{
+			margin-left: 11px;
+		}
+
+		.box-body-right4 .box-title .box-btn [aria-selected=true]{
+			color: #03c75a; border-color: #19ce60;
+		}
+
+		.box-body-right4 .box-contents{
+			overflow: hidden; height: 1763px; border: 1px solid #e4e8eb;
+		}
+
+		.box-body-right4 .box-contents .box-shop-head{
+			background-color: #f7f9fa; padding: 12px 4px 11px 10px; 
+			border-bottom: 1px solid #dae1e6; 
+		}
+
+		.box-body-right4 .box-contents .box-shop-head .area-mall>*{
+			float: left; line-height: 23px; color: #404040; letter-spacing: -.25px;
+		}
+
+		.box-body-right4 .box-contents .box-shop-head [class^=dot]{
+			width: 3px; height: 3px; border-radius: 50%; 
+			background-color: #c9cccf;
+		}
+
+		.box-body-right4 .box-contents .box-shop-head .dot13{
+			margin: 10px 13px 0;
+		}
+
+		.box-body-right4 .box-contents .box-shop-head .dot12{
+			margin: 10px 12px 0;
+		}
+
+		.box-body-right4 .box-contents .box-shop-head .bold{
+			font-weight: bold; color: #202020;
+		}
 
 		/* 공통 */
 		.clearfix::after{
@@ -636,6 +712,11 @@
 		.blind{
 			position: absolute;
 			width: 1px; height: 1px;margin: -1px; overflow: hidden;
+		}
+
+		.img2-after::after, .img2-before::before, .img2{
+			background-image: url(img/img2.png);
+			background-size: 129px 101px;
 		}
 
 		.img1::after, .icon-jrnaver.img1, .icon-happybean.img1,
@@ -1123,6 +1204,7 @@
 							</div>
 							<div class="box-contents"></div>
 						</div>
+						<!-- 메인 왼쪽 3번째 박스 끝 -->
 					</div>
 					<!-- 메인 왼쪽 박스 -->
 					<div class="box-body-right">
@@ -1188,6 +1270,36 @@
 							<span class="blind">광고</span>
 						</div>
 						<!-- 메인 오른쪽 세번째 박스 끝 -->
+						<div class="box-body-right4">
+							<div class="box-title clearfix">
+								<a href="#" class="link-trand-shopping img2-after img2-before">트랜드 쇼핑</a>
+								<div class="box-btn">
+									<a href="#" class="btn-product">상품</a>
+									<a href="#" class="btn-shoppingmall">쇼핑몰</a>
+									<a href="#" class="btn-men" aria-selected="true">MEN</a>
+								</div>
+							</div>
+							<div class="box-contents">
+								<div class="box-shop-head">
+									<div class="blind">몰 바로가기</div>
+									<div class="area-mall clearfix">
+										<a href="#" class="link-cupang bold">쿠팡</a>
+										<span class="dot13"></span>
+										<a href="#" class="link-cupang bold">G마켓</a>
+										<span class="dot13"></span>
+										<a href="#" class="link-cupang">옥션</a>
+										<span class="dot12"></span>
+										<a href="#" class="link-cupang">11번가</a>
+										<span class="dot13"></span>
+										<a href="#" class="link-cupang">SSG닷컴</a>
+										<span class="dot12"></span>
+										<a href="#" class="link-cupang">티몬</a>
+									</div>
+									<div class="area-mall"></div>
+								</div>
+							</div>
+						</div>
+						<!-- 메인 오른쪽 네번째 박스 끝-->
 					</div>
 					<!-- 메인 오른족 박스 -->
 				</div>
