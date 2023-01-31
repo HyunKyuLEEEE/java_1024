@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		*{padding: 0; margin: 0;}
+		a{text-decoration: none;}
+		ul{list-style: none;}
+		.container{
+			height: 50px; margin-top: 30px; border: 3px solid #000;
+			overflow: hidden; width: 500px;
+		}
+		.list-news{
+			width: 500%;
+		}
+		.list-news::after{
+			content: ''; display: block;
+		}
+		.item-news{
+			height: 50px; line-height: 50px; padding-left: 20px;
+			background-color: yellow; width: 20%;
+			box-sizing: border-box; float: left;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<ul class="list-news">
+			<li class="item-news">
+				<a href="#" class="link-news">111111111111111</a>
+			</li>
+			<li class="item-news">
+				<a href="#" class="link-news">222222222222222</a>
+			</li>
+			<li class="item-news">
+				<a href="#" class="link-news">333333333333333</a>
+			</li>
+			<li class="item-news">
+				<a href="#" class="link-news">444444444444444</a>
+			</li>
+			<li class="item-news">
+				<a href="#" class="link-news">555555555555555</a>
+			</li>
+		</ul>
+	</div>
+	<script>
+		let id = rolling();
+		//hover 이벤트 등록
+			//마우스가 요소안으로 들어오면
+			//애니메이션이 진행중인 setInterval를 해제 => clearInterval
+		$('.container').hover(function(){
+			clearInterval(id);
+		},function(){
+			//마우스가 요소를 빠져나가면
+			//setInterval를 통해 애니메이션이 진행되도록 작업
+			id = rolling();
+		});
+
+		function rolling(){
+			return setInterval(function(){
+				if(!$('.item-news	').first().is(':animated')){
+					let width = $('.item-news').innerWidth();
+					$('.item-news	').first().animate({
+							marginLeft : `-${width}px`
+					},1200,function(){
+						$(this).detach().appendTo('.list-news').removeAttr('style');
+					});
+				}
+			},2000);
+		}
+
+	</script>
+</body>
+</html>
