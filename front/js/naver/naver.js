@@ -109,10 +109,27 @@ $(function(){
 //메뉴 관련 이벤트(더보기)
 $(function(){
 	$('.group-menu .btn-more').click(function(e){
-		e.preventDefault
+		e.preventDefault();
 		$(this).toggleClass('fold');
+		$('.container-menu .container-service').toggle();
+		$('.group-menu .box-btn-area').toggle();
 	});
+	$('.group-menu .box-btn-area .btn-set').click(function(e){
+		e.preventDefault();
+		setMenuServiceBtn();
+	})
 });
+
+function setMenuServiceBtn(flag){
+	$('.group-menu .box-btn-area .btn').removeClass('display-none');
+	if(flag){
+		$('.group-menu .box-btn-area .btn-reset').addClass('display-none');
+		$('.group-menu .box-btn-area .btn-save').addClass('display-none');
+	}else{
+		$('.group-menu .box-btn-area .btn-favorite-all').addClass('display-none');
+		$('.group-menu .box-btn-area .btn-set').addClass('display-none');
+	}
+}
 
 
 
