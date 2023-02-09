@@ -11,38 +11,52 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
 	
 	@RequestMapping(value = "/")
-	public ModelAndView home(ModelAndView mv, String name, Integer age) {
-		mv.addObject("name", name);
-		mv.addObject("age", age);
-		mv.setViewName("home");
-		return mv;
-	}
-	@RequestMapping(value = "/board/{num}")
-	public ModelAndView board(ModelAndView mv, @PathVariable("num")Integer num) {
-		System.out.println("게시글 번호 : " + num);
-		mv.setViewName("home");
+	public ModelAndView home(ModelAndView mv) {
+		mv.setViewName("/main/home");
 		return mv;
 	}
 	
-	@RequestMapping(value = "/test")
-	public ModelAndView test(ModelAndView mv,InfoVo info) {
-		mv.addObject("info1",info);
-		mv.setViewName("home2");
+	@RequestMapping(value = "/ex1")
+	public ModelAndView ex1(ModelAndView mv,String name, Integer age) {
+		System.out.println("예제1 - 화면에서 전달하는 이름 : "+ name);
+		System.out.println("예제1 - 화면에서 전달하는 이름 : "+ age);
+		mv.setViewName("/main/ex1");
 		return mv;
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView login(ModelAndView mv) {
-		mv.setViewName("login");
+	@RequestMapping(value = "/ex2")
+	public ModelAndView ex2(ModelAndView mv,String name, Integer age) {
+		System.out.println("예제2 - 화면에서 전달하는 이름 : "+ name);
+		System.out.println("예제2 - 화면에서 전달하는 이름 : "+ age);
+		mv.setViewName("/main/ex2");
 		return mv;
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView loginPost(ModelAndView mv, String id, String pw) {
-		System.out.println(id);
-		System.out.println(pw);
-		mv.setViewName("login");
+	@RequestMapping(value = "/ex3")
+	public ModelAndView ex3(ModelAndView mv) {
+		mv.setViewName("/main/ex3");
 		return mv;
 	}
 	
+	@RequestMapping(value = "/ex3/{name}/{age}")
+	public ModelAndView exNameAge(ModelAndView mv,
+		@PathVariable("name")String name,
+		@PathVariable("age")int age) {
+		System.out.println("예제3 - 화면에서 전달하는 이름 : "+ name);
+		System.out.println("예제3 - 화면에서 전달하는 이름 : "+ age);
+		mv.setViewName("/main/ex3");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/ex4")
+	public ModelAndView ex4(ModelAndView mv) {
+		/* 서버에서 화면으로 이름과 나이를 전송
+		 * - 화면에서 호출할 이름(변수명)과 값을 지정
+		 * - addObject메소드를 통해서
+		 * */
+		mv.addObject("name", "둘리");
+		mv.addObject("age", 100000);
+		mv.setViewName("/main/ex4");
+		return mv;
+	}
 }
