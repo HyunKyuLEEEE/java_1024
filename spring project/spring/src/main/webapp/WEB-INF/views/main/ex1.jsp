@@ -13,3 +13,4 @@
 		<button>전송</button>
 	</form>
 </div>
+${user}
