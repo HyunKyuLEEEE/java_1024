@@ -3,10 +3,57 @@
     pageEncoding="UTF-8"%>
 <div class="container">
 	<h1>게시글 리스트</h1>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>게시판</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>추천/비추천</th>
+				<th>작성일</th>
+				<th>조회수</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${list}" var="bo" varStatus="vs">
+				<tr>
+					<td class="form-group">${bo.bo_num }</td>
+					<td>${bo.bt_name }</td>
+					<td class="form-group">
+						<a href="<c:url value='/board/detail/${bo.bo_num}'></c:url>">${bo.bo_title}</a>
+					</td>
+					<td>${bo.bo_me_id}</td>
+					<td>${bo.bo_up}/${bo.bo_down}</td>
+					<td>${bo.bo_register_date_str}</td>
+					<td>${bo.bo_views }</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 	
-
-
-	<c:if test="${user != null}">
-		<a href="<c:url value="/board/insert"></c:url>"><button class="btn btn-outline-primary btn-reg">글쓰기</button></a>
+	<ul class="pagination justify-content-center">
+		<c:if test="${pm.prev}">
+			<li class="page-item">
+				<a class="page-link" href="<c:url value='/board/list?page=${pm.startPage-1}'></c:url>">이전</a>
+			</li>
+		</c:if>
+		<c:forEach begin="${pm.startPage }" end="${pm.endPage }" var="i">
+			<li class="page-item <c:if test="${pm.cri.page == i}"> active</c:if>">
+				<a class="page-link" href="<c:url value='/board/list?page=${i}'></c:url>">${i}</a>
+			</li>
+		</c:forEach>
+		
+		<c:if test="${pm.next}">
+			<li class="page-item">
+				<a class="page-link" href="<c:url value='/board/list?page=${pm.endPage+1}'></c:url>">다음</a>
+			</li>
+		</c:if>
+	</ul>
+	
+	<c:if test="${user != null }">
+		<a href="<c:url value="/board/insert"></c:url>">
+			<button class="btn btn-outline-primary btn-ins">글쓰기</button>
+		</a>
 	</c:if>
 </div>
