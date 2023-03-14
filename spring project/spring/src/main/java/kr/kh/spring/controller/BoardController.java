@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.kh.spring.pagination.Criteria;
 import kr.kh.spring.pagination.PageMaker;
 import kr.kh.spring.service.BoardService;
+import kr.kh.spring.service.MemberService;
 import kr.kh.spring.utils.MessageUtils;
 import kr.kh.spring.vo.BoardTypeVO;
 import kr.kh.spring.vo.BoardVO;
@@ -33,11 +35,14 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
+	@Autowired
+	MemberService memberService;
+	
 	@RequestMapping(value = "/board/list", method=RequestMethod.GET)
 	public ModelAndView boardList(ModelAndView mv, Criteria cri) {
 		//우선 전체 게시글을 가져오는 코드로 작성하고
 		//추후에 페이지네이션 및 검색 기능을 적용
-		cri.setPerPageNum(2);
+		
 		ArrayList<BoardVO> list = boardService.getBoardList(cri);
 		int totalCount = boardService.getBoardTotalCount(cri);
 		PageMaker pm = new PageMaker(totalCount, 3, cri);
@@ -50,7 +55,8 @@ public class BoardController {
 	}
 	@RequestMapping(value = "/board/insert", method=RequestMethod.GET)
 	public ModelAndView boardInsert(ModelAndView mv,
-			HttpServletRequest request) {
+			HttpServletRequest request,
+			Integer bo_ori_num) {
 		//세션에서 회원 정보를 가져옴(게시판을 가져오기 오기 위해서)
 		// => 쓰기 권한이 있는 게시판을 가져오기 위한 작업
 		MemberVO user = 
@@ -59,7 +65,11 @@ public class BoardController {
 		//사용자 권한에 맞는 게시판들을 가져옴
 		ArrayList<BoardTypeVO> btList = 
 				boardService.getBoardType(user.getMe_authority());
+		bo_ori_num = bo_ori_num == null ? 0 : bo_ori_num;
+		BoardVO board = boardService.getBoard(bo_ori_num, user);
+		mv.addObject("board", board);
 		mv.addObject("btList", btList);
+		mv.addObject("bo_ori_num",bo_ori_num);
 		//작성할 타입이 없으면 작성 페이지로 갈 필요가 없어서 
 		//게시글 리스트로 이동시킴
 		if(btList.size() == 0) {
@@ -182,5 +192,15 @@ public class BoardController {
 					"/board/list");
 		}
 		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/check/id", method=RequestMethod.POST)
+	public Map<String, Object> boardLike(HttpSession session,
+			@RequestBody MemberVO user) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		boolean res = memberService.checkId(user);
+		map.put("res", res);
+		return map;
 	}
 }
