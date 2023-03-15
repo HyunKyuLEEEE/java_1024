@@ -116,10 +116,17 @@
 			<button class="btn btn-outline-primary btn-reply">답글</button>
 		</a>
 	</c:if>
-	<div class="comment-list">
-	
+	<div class="comment-list mt-2">
+		<div class="row">
+			<div class="co_me_id">qwe123</div>
+			<div class="co_content">11</div>
+			<div class="co_register_date">2023-03-15</div>
+			<button class="btn btn-outline-success btn-reply">답글</button>
+			<button class="btn btn-outline-success btn-update">수정</button>
+			<button class="btn btn-outline-success btn-delete">삭제</button>
+		</div>
 	</div>
-	<div class="comment-pagination">
+	<div class="comment-pagination mt-2">
 	
 	</div>
 	<div class="comment-box mt-2">
@@ -211,9 +218,19 @@ $('.btn-comment-insert').click(function(){
 	}
 	insertComment(comment);
 });
-selectCommentList();
-function selectCommentList(){
-	
+const bo_num = '${board.bo_num}';
+selectCommentList(1, bo_num);
+function selectCommentList(page, bo_num){
+	//현재 페이지 정보
+	let cri = {
+			page : page	
+	}
+	ajax('POST', 
+		cri, 
+		'<c:url value="/comment/list/'+bo_num+'"></c:url>',
+		function(data){
+			console.log(data);
+		});
 }
 
 //댓글 객체가 주어지면 댓글을 등록하는 함수
